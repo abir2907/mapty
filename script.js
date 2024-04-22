@@ -106,6 +106,9 @@ class App {
   }
 
   _newWorkout(e) {
+    const validInputs = (...inputs) =>
+      inputs.every(inp => Number.isFinite(inp));
+    const allPositive = (...inputs) => inputs.every(inp => inp > 0);
     e.preventDefault();
 
     // Get data from form
@@ -113,16 +116,26 @@ class App {
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
 
-    // Check if data is valid
-
     // If workout is running, create running object
     if (type === 'running') {
       const cadence = +inputCadence.value;
+      // Check if data is valid
+      if (
+        !validInputs(distance, duration, cadence) ||
+        !allPositive(distance, duration, cadence)
+      )
+        return alert('Inputs have to be positive numbers!');
     }
 
     // If workout is cycling, create cycling object
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
+      // Check if data is valid
+      if (
+        !validInputs(distance, duration, elevation) ||
+        !allPositive(distance, duration)
+      )
+        return alert('Inputs have to be positive numbers!');
     }
 
     // Add new object to workout array
