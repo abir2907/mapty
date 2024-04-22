@@ -32,21 +32,23 @@ navigator.geolocation.getCurrentPosition(
       .openPopup();
 
     map.on('click', function (mapEvent) {
-      const { lat, lng } = mapEvent.latlng;
+      form.classList.remove('hidden');
 
-      L.marker([lat, lng])
-        .addTo(map)
-        .bindPopup(
-          L.popup({
-            maxWidth: 250,
-            minWidth: 100,
-            autoClose: false,
-            closeOnClick: false,
-            className: 'running-popup',
-          })
-        )
-        .setPopupContent('Workout')
-        .openPopup();
+      // const { lat, lng } = mapEvent.latlng;
+
+      // L.marker([lat, lng])
+      //   .addTo(map)
+      //   .bindPopup(
+      //     L.popup({
+      //       maxWidth: 250,
+      //       minWidth: 100,
+      //       autoClose: false,
+      //       closeOnClick: false,
+      //       className: 'running-popup',
+      //     })
+      //   )
+      //   .setPopupContent('Workout')
+      //   .openPopup();
     });
   },
   function () {
