@@ -33,6 +33,7 @@ navigator.geolocation.getCurrentPosition(
 
     map.on('click', function (mapEvent) {
       form.classList.remove('hidden');
+      inputDistance.focus();
 
       // const { lat, lng } = mapEvent.latlng;
 
