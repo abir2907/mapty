@@ -16,22 +16,15 @@ let map, mapEvent;
 class App {
   constructor() {}
 
-  _getPosition() {}
+  _getPosition() {
+    navigator.geolocation.getCurrentPosition(this._loadMap, function () {
+      alert('Could not get your position');
+    });
+  }
 
-  _loadMap() {}
-
-  _showForm() {}
-
-  _toggleElevationField() {}
-
-  _newWorkout() {}
-}
-
-navigator.geolocation.getCurrentPosition(
-  function (position) {
+  _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
 
     const coords = [latitude, longitude];
 
@@ -53,11 +46,14 @@ navigator.geolocation.getCurrentPosition(
       form.classList.remove('hidden');
       inputDistance.focus();
     });
-  },
-  function () {
-    alert('Could not get your position');
   }
-);
+
+  _showForm() {}
+
+  _toggleElevationField() {}
+
+  _newWorkout() {}
+}
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
