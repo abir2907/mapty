@@ -45,7 +45,9 @@ navigator.geolocation.getCurrentPosition(
   }
 );
 
-form.addEventListener('submit', function () {
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
   // Display marker
   const { lat, lng } = mapEvent.latlng;
 
